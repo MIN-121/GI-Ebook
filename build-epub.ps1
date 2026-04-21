@@ -1,12 +1,12 @@
 param(
     [string[]]$SourceDirs = @(
-        "D:\GI-Ebook\书籍",
-        "D:\GI-Ebook\角色故事",
-        "D:\GI-Ebook\武器",
-        "D:\GI-Ebook\圣遗物"
+        ".\书籍",
+        ".\角色故事",
+        ".\武器",
+        ".\圣遗物"
     ),
 
-    [string]$OutputDir = "D:\GI-Ebook\output"
+    [string]$OutputDir = ".\output"
 )
 
 if (-not (Get-Command pandoc -ErrorAction SilentlyContinue)) {
