@@ -1,0 +1,31 @@
+name: Release EPUB
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PowerShell build script
+        shell: pwsh
+        run: |
+          ./build-epub.ps1
+
+      - name: List generated files
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path output
+
+      - name: Create Release and Upload EPUBs
+        uses: softprops/action-gh-release@v2
+        with:
+          files: output/*.epub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
