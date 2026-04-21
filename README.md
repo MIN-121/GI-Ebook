@@ -4,7 +4,7 @@
 
 ## 下载EPUB
 
-请到release页面下载
+请到[release](https://github.com/MIN-121/GI-Ebook/releases)页面
 
 进度:  
 - [X] 游戏内书籍(至月之六版本)
