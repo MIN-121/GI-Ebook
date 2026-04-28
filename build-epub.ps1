@@ -40,10 +40,6 @@ foreach ($dir in $SourceDirs) {
 
     $fileList = $mdFiles | ForEach-Object { $_.FullName }
 
-    $metadata = @(
-        "--metadata=title=$bookName"
-    )
-
     $coverPath = Join-Path $dir "images" "cover.png"
 
     $coverArg = @()
@@ -52,15 +48,20 @@ foreach ($dir in $SourceDirs) {
         $coverArg = @("--epub-cover-image=$coverPath")
     }
 
-    # 执行 pandoc
-    & pandoc `
-        @fileList `
-        -o $outputFile `
-        --toc `
-        --embed-resources `
-        --resource-path=$dir `
-        @metadata `
-        @coverArg 
+    $arguments = @()
+    $arguments += $fileList
+    $arguments += "-o"
+    $arguments += $outputFile
+    $arguments += "--toc"
+    $arguments += "--embed-resources"
+    $arguments += "--resource-path=$dir"
+    $arguments += "--metadata=title=$bookName"
+
+    if ($coverArg.Count -gt 0) {
+        $arguments += $coverArg
+    }
+    
+    & pandoc @arguments
 
     if ($LASTEXITCODE -eq 0) {
         Write-Host "生成成功: $outputFile" -ForegroundColor Green
