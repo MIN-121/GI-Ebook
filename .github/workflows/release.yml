@@ -29,6 +29,16 @@ jobs:
         run: |
           Get-ChildItem -Path output
 
+      - name: Rename EPUBs with version
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}"
+          Get-ChildItem output/*.epub | ForEach-Object {
+            $newName = "$($_.BaseName)-$version.epub"
+            Rename-Item $_.FullName (Join-Path $_.DirectoryName $newName)
+            Write-Host "Renamed to $newName"
+          }
+
       - name: Create Release and Upload EPUBs
         uses: softprops/action-gh-release@v2
         with:
