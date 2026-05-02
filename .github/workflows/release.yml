@@ -44,6 +44,7 @@ jobs:
         with:
           files: output/*.epub
           overwrite_files: false
+          make_latest: true
           fail_on_unmatched_files: false
           preserve_order: true
         env:
