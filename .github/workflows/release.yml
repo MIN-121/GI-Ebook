@@ -33,5 +33,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: output/*.epub
+          overwrite_files: false
+          fail_on_unmatched_files: false
+          preserve_order: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
