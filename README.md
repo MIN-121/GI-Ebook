@@ -7,8 +7,9 @@
 请到[release](https://github.com/MIN-121/GI-Ebook/releases)页面
 
 进度:  
+
 - [X] 游戏内书籍(至月之六版本)
-- [ ] 角色故事
+- [X] 角色故事(至月之六版本)
 - [ ] 圣遗物文本
 - [ ] 武器文本
 - [ ] 也许还有其他值得收集的文本吧
@@ -23,6 +24,7 @@
 ### 生成 EPUB
 
 运行构建脚本：
+
 ```powershell
 .\build-epub.ps1
 ```
