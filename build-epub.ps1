@@ -5,7 +5,6 @@ param(
         ".\武器",
         ".\圣遗物"
     ),
-
     [string]$OutputDir = ".\output"
 )
 
@@ -26,7 +25,21 @@ foreach ($dir in $SourceDirs) {
     }
 
     $bookName = Split-Path $dir -Leaf
-    $outputFile = Join-Path $OutputDir ($bookName + ".epub")
+
+    $nameMap = @{
+        "书籍"     = "books"
+        "角色故事" = "characters"
+        "武器"     = "weapons"
+        "圣遗物"   = "artifacts"
+    }
+
+    $mappedName = if ($nameMap.ContainsKey($bookName)) {
+        $nameMap[$bookName]
+    } else {
+        $bookName
+    }
+
+    $outputFile = Join-Path $OutputDir ($mappedName + ".epub")
 
     Write-Host "正在处理: $bookName"
 
