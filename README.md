@@ -18,7 +18,7 @@
 
 ### 环境要求
 
-- PowerShell 5.0+（Windows）
+- PowerShell（Windows）
 - [Pandoc](https://pandoc.org/installing.html) - 用于将 Markdown 转换为 EPUB
 
 ### 生成 EPUB
